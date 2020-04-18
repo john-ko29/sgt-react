@@ -33,7 +33,8 @@ class App extends React.Component {
     for (let i = 0; i < this.state.grades.length; i++) {
       totalGrade += this.state.grades[i].grade;
     }
-    return Math.ceil(totalGrade / this.state.grades.length);
+    const averageGrade = Math.ceil(totalGrade / this.state.grades.length);
+    if (!isNaN(averageGrade)) { return averageGrade; }
   }
 
   render() {
