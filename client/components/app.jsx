@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from './header';
 
 class App extends React.Component {
   constructor(props) {
@@ -13,26 +14,22 @@ class App extends React.Component {
     this.getAllGrades();
   }
 
+  componentDidUpdate() {
+
+  }
+
   getAllGrades() {
     fetch('/api/grades')
       .then(response => response.json())
       .then(data => {
-        const gradesData = this.state.grades.slice();
-        gradesData.push(data);
-        this.setState({ grades: gradesData });
+        this.setState({ grades: data });
       });
   }
 
   render() {
-    return <Header />;
-  }
-}
-
-class Header extends React.Component {
-  render() {
     return (
-      <div className="header">
-        <h1>Student Grade Table</h1>
+      <div className="container">
+        <Header />
       </div>
     );
   }
