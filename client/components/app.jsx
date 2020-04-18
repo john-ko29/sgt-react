@@ -9,7 +9,17 @@ class App extends React.Component {
   }
 
   render() {
-    return null;
+    return <Header />;
+  }
+}
+
+class Header extends React.Component {
+  render() {
+    return (
+      <div className="header">
+        <h1>Student Grade Table</h1>
+      </div>
+    );
   }
 }
 
