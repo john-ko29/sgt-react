@@ -10,6 +10,7 @@ class App extends React.Component {
     };
     this.getAllGrades = this.getAllGrades.bind(this);
     this.getAverageGrade = this.getAverageGrade.bind(this);
+    this.postGrade = this.postGrade.bind(this);
   }
 
   componentDidMount() {
@@ -25,6 +26,23 @@ class App extends React.Component {
       .then(response => response.json())
       .then(data => {
         this.setState({ grades: data });
+      });
+  }
+
+  postGrade(newGrade) {
+    const request = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newGrade)
+    };
+    fetch('/api/grades', request)
+      .then(response => response.json())
+      .then(data => {
+        const grade = this.state.grades.slice();
+        grade.push(data);
+        this.setState({ grades: grade });
       });
   }
 
