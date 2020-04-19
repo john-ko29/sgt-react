@@ -12,6 +12,7 @@ class App extends React.Component {
     this.getAllGrades = this.getAllGrades.bind(this);
     this.getAverageGrade = this.getAverageGrade.bind(this);
     this.postGrade = this.postGrade.bind(this);
+    this.deleteGrade = this.deleteGrade.bind(this);
   }
 
   componentDidMount() {
@@ -45,6 +46,19 @@ class App extends React.Component {
         grade.push(data);
         this.setState({ grades: grade });
       });
+  }
+
+  deleteGrade(gradeId) {
+    const req = {
+      method: 'DELETE'
+    };
+
+    fetch(`/api/grades/${gradeId}`, req);
+
+    const newGrades = this.state.todos.slice();
+    const index = newGrades.findIndex(grade => grade.id === gradeId);
+    newGrades.splice(index, 1);
+    this.setState({ grades: newGrades });
   }
 
   getAverageGrade() {
