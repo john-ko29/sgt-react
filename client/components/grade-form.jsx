@@ -1,6 +1,28 @@
 import React from 'react';
 
 class GradeForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+      course: '',
+      grade: 0
+    };
+    this.changeHandle = this.changeHandle.bind(this);
+  }
+
+  changeHandle(event) {
+    if (event.target.name === 'name') {
+      this.setState({ name: event.target.value });
+    }
+    if (event.target.name === 'course') {
+      this.setState({ course: event.target.value });
+    }
+    if (event.target.name === 'grade') {
+      this.setState({ grade: event.target.value });
+    }
+  }
+
   render() {
     return (
       <form className='d-flex flex-column col'>
@@ -8,13 +30,13 @@ class GradeForm extends React.Component {
           <div className="input-group-prepend">
             <label className="input-group-text" htmlFor="name"><i className="fa fa-user"></i></label>
           </div>
-          <input className="form-control" type="text" name="name" id="name" placeholder="Student Name" />
+          <input className="form-control" onChange={this.changeHandle} type="text" name="name" id="name" placeholder="Student Name" />
         </div>
         <div className="input-group mb-3">
           <div className="input-group-prepend">
             <label className="input-group-text" htmlFor="course"><i className="fa fa-clipboard-list"></i></label>
           </div>
-          <input className="form-control" type="text" name="course" id="course" placeholder="Student Course" />
+          <input className="form-control" onChange={this.changeHandle} type="text" name="course" id="course" placeholder="Student Course" />
         </div>
         <div className="input-group mb-3">
           <div className="input-group-prepend">
