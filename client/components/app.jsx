@@ -63,7 +63,7 @@ class App extends React.Component {
         <main className='row d-flex justify-content-around'>
           <GradeTable grades={this.state.grades}/>
           <div className='col-1'></div>
-          <GradeForm />
+          <GradeForm onSubmit={this.postGrade}/>
         </main>
       </div>
     );

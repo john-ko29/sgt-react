@@ -6,7 +6,7 @@ class GradeForm extends React.Component {
     this.state = {
       name: '',
       course: '',
-      grade: 0
+      grade: ''
     };
     this.changeHandle = this.changeHandle.bind(this);
   }
@@ -21,6 +21,29 @@ class GradeForm extends React.Component {
     if (event.target.name === 'grade') {
       this.setState({ grade: event.target.value });
     }
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    const newGrade = {
+      name: this.state.name,
+      course: this.state.course,
+      grade: this.state.grade
+    };
+    this.props.onSubmit(newGrade);
+    this.setState({
+      name: '',
+      course: '',
+      grade: ''
+    });
+  }
+
+  handleClear(event) {
+    this.setState({
+      name: '',
+      course: '',
+      grade: ''
+    });
   }
 
   render() {
