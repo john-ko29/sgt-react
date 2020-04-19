@@ -50,16 +50,17 @@ class App extends React.Component {
   getAverageGrade() {
     let totalGrade = 0;
     for (let i = 0; i < this.state.grades.length; i++) {
-      totalGrade += this.state.grades[i].grade;
+      totalGrade += parseInt(this.state.grades[i].grade);
     }
     const averageGrade = Math.ceil(totalGrade / this.state.grades.length);
     if (!isNaN(averageGrade)) { return averageGrade; }
   }
 
   render() {
+    const averageGrade = this.getAverageGrade();
     return (
       <div className="container w-90">
-        <Header average={this.getAverageGrade()} />
+        <Header average={averageGrade} />
         <main className='row d-flex justify-content-around'>
           <GradeTable grades={this.state.grades}/>
           <div className='col-1'></div>
