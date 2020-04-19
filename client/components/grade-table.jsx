@@ -17,7 +17,9 @@ function GradeTable(props) {
             return (
               <Grade
                 key={grade.id}
-                grades={grade} />
+                grades={grade}
+                deleteGrade={props.deleteGrade}
+              />
             );
           })
         }
