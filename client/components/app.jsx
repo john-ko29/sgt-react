@@ -76,7 +76,7 @@ class App extends React.Component {
       <div className="container w-90">
         <Header average={averageGrade} />
         <main className='row d-flex justify-content-around'>
-          <GradeTable grades={this.state.grades}/>
+          <GradeTable grades={this.state.grades} deleteGrade={this.deleteGrade}/>
           <div className='col-1'></div>
           <GradeForm onSubmit={this.postGrade}/>
         </main>
