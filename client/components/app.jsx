@@ -13,6 +13,7 @@ class App extends React.Component {
     this.getAverageGrade = this.getAverageGrade.bind(this);
     this.postGrade = this.postGrade.bind(this);
     this.deleteGrade = this.deleteGrade.bind(this);
+    this.checkGrade = this.checkGrade.bind(this);
   }
 
   componentDidMount() {
@@ -70,15 +71,28 @@ class App extends React.Component {
     if (!isNaN(averageGrade)) { return averageGrade; }
   }
 
+  checkGrade() {
+    let classHidden = '';
+    if (this.state.grades[0]) {
+      classHidden = 'd-none';
+    }
+    return classHidden;
+  }
+
   render() {
     const averageGrade = this.getAverageGrade();
+    const classHidden = this.checkGrade();
     return (
       <div className="container w-90">
         <Header average={averageGrade} />
         <main className='row d-flex justify-content-around'>
-          <GradeTable grades={this.state.grades} deleteGrade={this.deleteGrade}/>
+          <div className='col'>
+            <GradeTable grades={this.state.grades} deleteGrade={this.deleteGrade}/>
+            <h3 className={classHidden}>No Grade Recorded</h3>
+          </div>
           <div className='col-1'></div>
           <GradeForm onSubmit={this.postGrade}/>
+
         </main>
       </div>
     );
