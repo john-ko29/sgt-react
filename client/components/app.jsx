@@ -55,7 +55,7 @@ class App extends React.Component {
 
     fetch(`/api/grades/${gradeId}`, req);
 
-    const newGrades = this.state.todos.slice();
+    const newGrades = this.state.grades.slice();
     const index = newGrades.findIndex(grade => grade.id === gradeId);
     newGrades.splice(index, 1);
     this.setState({ grades: newGrades });
